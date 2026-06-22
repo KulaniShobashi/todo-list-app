@@ -1,59 +1,29 @@
-function PermissionTable() {
+function PermissionTable({ rolePermissions }) {
   return (
     <div className="permission-table">
-      <h3>Role Permissions</h3>
+      <h3>Permission Management</h3>
 
       <table>
         <thead>
           <tr>
-            <th>Action</th>
-            <th>Admin</th>
-            <th>Dept-head</th>
-            <th>Learner</th>
-            <th>Viewer</th>
+            <th>Role</th>
+            <th>Create</th>
+            <th>Delete</th>
+            <th>Update</th>
+            <th>Complete</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Create Topic</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-          </tr>
-
-          <tr>
-            <td>Delete Topic</td>
-            <td>&#9989;</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-            <td>&#10060;</td>
-          </tr>
-
-          <tr>
-            <td>Add Subtopic</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-          </tr>
-
-          <tr>
-            <td>Delete Subtopic</td>
-            <td>&#9989;</td>
-            <td>&#9989;</td>
-            <td>&#10060;</td>
-            <td>&#10060;</td>
-          </tr>
-
-          <tr>
-            <td>View Only</td>
-            <td>&#9989;</td>
-            <td>&#9989;</td>
-            <td>&#9989;</td>
-            <td>&#9989;</td>
-          </tr>
+          {Object.entries(rolePermissions).map(([role, permissions]) => (
+            <tr key={role}>
+              <td>{role}</td>
+              <td>{permissions.canCreate ? "Yes" : "No"}</td>
+              <td>{permissions.canDelete ? "Yes" : "No"}</td>
+              <td>{permissions.canUpdate ? "Yes" : "No"}</td>
+              <td>{permissions.canComplete ? "Yes" : "No"}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
